@@ -10,7 +10,10 @@
  */
 import java.io.*;
 import java.util.*;
-
+/**
+ * 
+ * @author Suyog Surana
+ */
 public class Boys {
     
 	String name;
@@ -20,7 +23,7 @@ public class Boys {
 	String status;
 	int budget;
 	String girlFriendName;
-
+        
 	Boys(){
 		intelligenceLevel = 0;
 		attractivnessLevel = 0;
@@ -30,11 +33,17 @@ public class Boys {
 		girlFriendName = " ";
 		name = " ";
 	}
+        /**
+         * 
+         * @param g
+         * @return 
+         */
 	boolean elligibility_criteria_check(Girls g){
 		if(this.budget >= g.budget && this.minimumattr_req <= g.attractivnessLevel && "single".equals(status) && "single".equals(g.status))
                     return true;
                 return false;
 	}
+        
 	void generate(){
 		try{
                     //Random randBoy = new Random();

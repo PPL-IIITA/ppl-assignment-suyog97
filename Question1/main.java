@@ -1,6 +1,17 @@
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
+/**
+ *
+ * @author Suyog Surana
+ */
 public class main{
+        /**
+         * 
+         * @param args 
+         */
 	public static void main(String args[]){
 		Boys b[] = new Boys[80];
 		Girls g[] = new Girls[25];
@@ -12,8 +23,7 @@ public class main{
 		int i=0 ,j=0;
 		String line = "";
 		int k,l;
-		String s[] = new String[100];
-		int cnt = 0;
+		int f = 0;
 		try{
 				buffer = new BufferedReader(new FileReader("boys.csv"));
 				while((line = buffer.readLine() )!= null){
@@ -69,27 +79,31 @@ public class main{
                 
 		for(l=0;l<j;l++){
 			for(k=0;k<i;k++){
+                            
 				if(g[l].budget<=b[k].budget && g[l].status.equals("Single") && b[k].status.equals("Single") && g[l].attractivnessLevel>=b[k].minimumattr_req ){
                                        // System.out.print("fddf");
 					b[k].girlFriendName = g[l].name;
 					g[l].boyFriendName = b[k].name;
                                        // System.out.print(b[k].girlFriendName);
 					b[k].status = "Committed";
-					g[l].status = "Committed";
-                                        break;
-				//	if(b[k].status.equals("Committed")){
-					//s[cnt] = "Boy: "+ b[k].name +" is committed with "+"Girl: "+ b[k].girlFriendName  ;
-					//}
-				//	cnt++;
-								
+					g[l].status = "Committed";								
 				}
-				
 			}
 		}
-		for(k=0;k<25;k++){
-                System.out.println(g[k].status);
-                   System.out.println(b[k].girlFriendName);
-                }
-		//MyLogger.logger(s,cnt);	
-	}
+                try{
+                    String log1;
+                    BufferedWriter lg=new BufferedWriter(new FileWriter("log.txt"));
+                    for(k=0;k<25;k++){
+                        if(g[k].status.equals("Committed")){
+                            String t1 = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+                            String t2=new SimpleDateFormat("hh.mm.ss").format(new Date());
+                            log1=g[k].name +" is committed to "+g[k].boyFriendName+" on "+t1+" at "+t2;
+                            lg.write(log1 +"\r\n");
+                        } 
+                    }
+                    lg.close();
+                }        
+        catch(Exception e){
+        }
+    }
 }

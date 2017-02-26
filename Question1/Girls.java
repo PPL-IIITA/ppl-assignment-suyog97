@@ -19,6 +19,11 @@ public class Girls{
 		boyFriendName = " ";
 		name = " ";
 	}
+        /**
+         * 
+         * @param b
+         * @return 
+         */
 	boolean elligibility_criteria_check(Boys b){
 		if(this.budget <= b.budget && "single".equals(status))
                     return true;
